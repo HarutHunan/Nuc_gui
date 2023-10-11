@@ -1,9 +1,6 @@
 import numpy as np
 import os
 
-from graph import GraphFrame, NavigationToolbar
-# from comp import *
-
 import tkinter as tk
 from tkinter import ttk, filedialog
 from tkinter import PhotoImage
@@ -38,24 +35,6 @@ class App(tk.Tk):
         if self.directory_path:
             self.image_files = [f for f in os.listdir(self.directory_path) if f.lower().endswith((".jpg", ".png", ".gif", ".bmp", ".jpeg"))]
             print(self.image_files)
-            # self.images = []
-
-            # for image_file in self.image_files:
-            #     image_path = os.path.join(self.directory_path, image_file)
-            #     image = Image.open(image_path)
-            #
-            #     # Resize images if necessary
-            #     max_width = 480
-            #     max_height = 480
-            #     width, height = image.size
-            #     if width > max_width or height > max_height:
-            #         ratio = min(max_width / width, max_height / height)
-            #         new_width = int(width * ratio)
-            #         new_height = int(height * ratio)
-            #         image = image.resize((new_width, new_height), Image.LANCZOS)
-            #
-            #     photo = ImageTk.PhotoImage(image)
-            #     self.images.append((image, photo))
 
             if self.image_files:
                 self.current_image_index = 0
