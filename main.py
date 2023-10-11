@@ -1,4 +1,3 @@
-from test import test
 from app import App
 import tkinter as tk
 from tkinter import ttk
