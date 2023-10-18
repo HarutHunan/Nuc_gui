@@ -26,7 +26,7 @@ class App(tk.Tk):
         super().__init__()
         self._started = 0
         self.title("Graph Illustration")
-        self.geometry("1280x720")
+        self.geometry("1440x720")
 
         self.files = []
 
@@ -117,8 +117,8 @@ class App(tk.Tk):
 
 
         # Image section
-        self.images_frame = ttk.Frame(self.left_frame, padding=(5, 5), relief="solid")
-        self.images_frame.grid(row=2, column=0, columnspan=5, rowspan=5, sticky="nsew")
+        self.images_frame = ttk.Frame(self.left_frame, padding=(5, 5))
+        self.images_frame.grid(row=2, column=0, columnspan=6, rowspan=5, sticky="nsew")
 
         self.image1_frame = ttk.Frame(self.images_frame, padding=(5, 5))
         self.image1_frame.pack(side=tk.LEFT, padx=(0, 0), pady=(0, 0))
@@ -141,7 +141,7 @@ class App(tk.Tk):
 
         # Upload section
         self.upload_section = ttk.Frame(self.right_frame, padding=(7, 7))
-        self.upload_section.grid(row=0, column=1, columnspan=2, padx=(0, 0), pady=(0, 0), sticky='nsew')
+        self.upload_section.grid(row=0, column=0, columnspan=2, padx=(0, 0), pady=(0, 0), sticky='nsew')
 
         self.upload_label = ttk.Label(self.upload_section, text="Load directory", font=("TkDefaultFont", 11))
         self.upload_label.pack(side=tk.TOP, pady=(5, 5))
@@ -149,16 +149,36 @@ class App(tk.Tk):
         self.upload_button = ttk.Button(self.upload_section, text="Load", command=lambda: self.load_directory(self.upload_entry))
         self.upload_button.pack(side=tk.LEFT, padx=(5, 10))
 
-        self.upload_entry = ttk.Entry(self.upload_section, width=20)
+        self.upload_entry = ttk.Entry(self.upload_section, width=40)
         self.upload_entry.pack(side=tk.BOTTOM, padx=(5, 5))
+
+        # Info section
+        self.info_section = ttk.Frame(self.right_frame, padding=(7, 7))
+        self.info_section.grid(row=2, column=0, rowspan=3, pady=(7, 7))
+
+        self.info_label1 = ttk.Label(self.info_section, text="Img name: ", font=("TkDefaultFont", 11))
+        self.info_label1.grid(row=0, column=0, padx=(7, 7), pady=(7, 7))
+        # self.info_label1.pack(side = tk.LEFT)
+        self.info_value1 = ttk.Label(self.info_section, text="", font=("TkDefaultFont", 11))
+        # self.info_value1.grid(row=0, column=1, pady=(3, 3), padx=(0, 3))
+
+        self.info_label2 = ttk.Label(self.info_section, text="Img size: ", font=("TkDefaultFont", 11))
+        self.info_label2.grid(row=1, column=0, padx=(7, 7), pady=(7, 7))
+        self.info_value2 = ttk.Label(self.info_section, text="", font=("TkDefaultFont", 11))
+        # self.info_value2.grid(row=1, column=1, pady=(3, 3), padx=(0, 3))
+
+        self.info_label3 = ttk.Label(self.info_section, text="Scale: ", font=("TkDefaultFont", 11))
+        self.info_label3.grid(row=2, column=0, padx=(7, 7), pady=(7, 7))
+        self.info_value3 = ttk.Label(self.info_section, text="", font=("TkDefaultFont", 11))
+        # self.info_value3.grid(row=2, column=1, pady=(3, 3))
 
         # Make the frames expandable
         self.grid_rowconfigure(1, weight=1)
-        self.grid_columnconfigure(0, weight=1)
-        self.grid_columnconfigure(1, weight=0)
+        self.grid_columnconfigure((0), weight=1)
         self.left_frame.grid_rowconfigure((2, 3, 4, 5, 6), weight=1)
-        self.left_frame.grid_columnconfigure((2, 3), weight=1)
-        # self.right_frame.grid_rowconfigure((2, 3,4), weight=1)
+        self.left_frame.grid_columnconfigure((0,1,2, 3,4,5), weight=1)
+        self.right_frame.grid_columnconfigure((0,1,2,3), weight=1)
+        self.right_frame.grid_rowconfigure((2, 3,4), weight=1)
 
         self.mainloop()
 
