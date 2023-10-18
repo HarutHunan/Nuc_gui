@@ -35,10 +35,12 @@ def graph(image_name: str) -> None:
 
 
 def loadImage(image_name: str, info: np.ndarray) -> Tuple[np.ndarray, int, str]:
-    resolution, units, _ = scale.load(image_name)
     path = os.path.join(
         project_path, image_name[:-4], image_name)
     image = cv.imread(path)
+    height, width = image.shape
+    if height != width:
+        resolution, units, _ = scale.load(image_name)
     if type(info) == np.ndarray and info.size > 0:
         info = cv.cvtColor(info, cv.COLOR_GRAY2RGB)
         info = cv.resize(info, (640, 75), interpolation=cv.INTER_AREA)
